@@ -6,7 +6,7 @@ Portal educativo de segurança digital, desenvolvido como Atividade
 Extensionista (Tecnologia Aplicada à Inclusão Digital) no curso de
 Sistemas de Informação da UNINTER.
 
-🔗 **Acesse o site:** [( link depois de publicar)](https://navegue-seguro.netlify.app)
+🔗 **Acesse o site:** https://navegue-seguro.netlify.app
 
 ![Captura de tela do portal Navegue Seguro](./image/readmeimg.png)
 
