@@ -1,0 +1,798 @@
+:root {
+  --background-color: #000;
+  --text-color: #ffffff;
+  --muted-color: #a1a1aa;
+  --primary-color: #1e88ff;
+  --primary-dark: #0a68d8;
+  --card: #0b0b0f;
+  --card2: #111119;
+  --font-family: "Inter", system-ui, sans-serif;
+  --border: #1f1f27;
+  --glow: 0 0 20px rgba(30, 136, 255, 0.35);
+  --gradient-hero:
+    radial-gradient(circle at 20% 20%,
+      oklch(0.35 0.18 258 / 0.35),
+      transparent 60%),
+    radial-gradient(circle at 80% 80%,
+      oklch(0.4 0.22 258 / 0.25),
+      transparent 60%);
+}
+
+p {
+  /* aqui é o parágrafo */
+  margin: 0;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: none;
+}
+
+h1,
+h2,
+h3 {
+  /* aqui é as fontes dos títulos  */
+  font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+}
+
+a {
+  /* aqui é a parte dos links */
+  color: inherit;
+}
+
+
+body {
+  /* aqui é o corpo da página */
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.logo img {
+  /* aqui é a imagem do logo */
+  width: 36px;
+  height: auto;
+  filter: drop-shadow(0 0 8px rgba(30, 136, 255, 0.5));
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  /* aqui é o header - a barra superior */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.container {
+  /* aqui é o container - que contém o conteúdo da página */
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+
+}
+
+.header .container {
+  /* aqui é o container dentro do header */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.nav-list {
+  /* aqui é a lista de navegação */
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+  list-style: none;
+}
+
+.header nav {
+  /* aqui é a navegação dentro do header */
+  margin-right: -2.5rem;
+}
+
+.nav-list a {
+  /* aqui é o link da navegação */
+  color: var(--muted-color);
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.nav-list a:hover {
+  /* aqui é o hover (passa o mouse) do link da navegação */
+  color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  .nav-list {
+    display: flex;
+  }
+}
+
+.lead {
+  /* aqui é o parágrafo de destaque */
+  margin-top: 1.5rem;
+  max-width: 40rem;
+  color: var(--muted-color);
+  font-size: 1.1rem;
+}
+
+.section.about {
+  padding-top: 11rem;
+}
+
+.about-text {
+  /* aqui é o parágrafo da seção about */
+  margin-top: 1rem;
+  max-width: 40rem;
+  color: var(--muted-color);
+  font-size: 1rem;
+}
+
+.about-card p {
+  color: var(--muted-color);
+}
+
+.about-text:first-of-type {
+  margin-top: 2rem;
+}
+
+.about .section-title {
+  margin-top: 0.125rem;
+}
+
+.logo {
+  /* aqui é o logo */
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.hero {
+  /* aqui é a seção hero - a parte principal da página */
+  position: relative;
+  background: var(--gradient-hero);
+  overflow: hidden;
+}
+
+/* inicialmente, a animação de fundo é invisível, mas quando a página carrega, ela aparece suavemente - inicio do antigravity */
+.hero-bg-anim {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  /* Máscara horizontal: 100% transparente na esquerda (onde estão os textos) e surge suavemente à direita */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.75) 75%, #000 100%);
+  mask-image: linear-gradient(to right, transparent 0%, transparent 20%, rgba(0, 0, 0, 0.2) 45%, rgba(0, 0, 0, 0.75) 75%, #000 100%);
+}
+
+.hero-canvas {
+  /* aqui é a animação de fundo da seção hero */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+  display: block;
+  opacity: 0.75;
+  /* transparência suave que revela o degradê azul de fundo */
+  /* Máscara vertical: fade suave no topo e na base sem linhas duras */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 15%, #000 85%, transparent 100%);
+}
+
+@media (max-width: 768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  .hero-bg-anim {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 100%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 100%);
+  }
+
+  .hero-canvas {
+    opacity: 0.3;
+    object-position: center center;
+  }
+}
+
+.hero-inner {
+  /* aqui é o conteúdo dentro da seção hero (fica à frente da animação) */
+  position: relative;
+  z-index: 2;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  .hero-inner {
+    padding: 8rem 1.5rem;
+  }
+}
+
+.pill {
+  /* aqui é o pill que aparece na seção hero, parecendo um botão, pílula */
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1px solid var(--border);
+  background: rgba(20, 20, 28, .5);
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  font-size: .60rem;
+  color: var(--muted-color);
+}
+
+.pill:hover {
+  /* aqui é o hover - passar o mouse no pill */
+  filter: brightness(1.5)
+}
+
+.dot {
+  /* aqui é o ponto que aparece na seção hero dentro do pill */
+  width: .4rem;
+  height: .4rem;
+  border-radius: 999px;
+  background: var(--primary-color);
+}
+
+h1.title {
+  /* aqui é o título principal, que aparece na seção hero */
+  margin-top: 1.5rem;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.05;
+  max-width: 48rem
+}
+
+@media(min-width:768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  h1.title {
+    font-size: 4.5rem
+  }
+}
+
+.title .accent {
+  /* aqui é a parte destacada do título, seguro */
+  color: var(--primary-color)
+}
+
+.actions {
+  /* aqui é a parte que contém as ações que aparecem na seção hero */
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem
+}
+
+.botao {
+  /* aqui é o botão */
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .85rem 1.5rem;
+  border-radius: .6rem;
+  font-size: .9rem;
+  font-weight: 500;
+  transition: all .2s;
+  cursor: pointer;
+  border: 0;
+}
+
+.botao-primary {
+  /* aqui é o botão primário */
+  background: rgba(20, 20, 28, .4);
+  border: 1px solid var(--border);
+  color: var(--text-color);
+
+}
+
+.botao-primary:hover {
+  /* aqui é o hover do botão primário */
+  filter: brightness(1.1);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.botao-ghost {
+  /* aqui é o botão secundário */
+  border: 1px solid var(--border);
+  background: rgba(20, 20, 28, .4);
+  color: var(--text-color);
+}
+
+.botao-ghost:hover {
+  /* aqui é o hover do botão secundário */
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+section.block {
+  /* aqui é a seção block, que contém conteúdo em bloco */
+  padding: 6rem 0;
+}
+
+.eyebrow {
+  /* aqui é o texto acima do título */
+  color: var(--primary-color);
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+h2.section-title {
+  /* aqui é o título da seção */
+  margin-top: 0.25rem;
+  font-size: 1.9rem;
+  font-weight: 700
+}
+
+@media(min-width:768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  h2.section-title {
+    font-size: 2.2rem
+  }
+}
+.section-intro {
+  margin-top: 0.25rem;
+  max-width: 40rem;
+  color: var(--muted-color);
+}
+.scams .eyebrow {
+  font-size: .8rem;
+}
+
+.scams h2.section-title {
+  font-size: 2.1rem;
+  margin-top: .1rem;
+}
+
+
+.grid {
+  /* aqui é o grid, que contém os itens em uma grade */
+  display: grid;
+  gap: 1rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+
+.grid-3 {
+  /* aqui é o grid de 3 colunas - responsivo */
+  grid-template-columns: 1fr
+}
+
+@media(min-width:768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  .grid-3 {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+@media(min-width:1024px) {
+
+  /* aqui é o media query para 1024px - responsivo*/
+  .grid-3 {
+    /* aqui é o grid de 3 colunas */
+    grid-template-columns: 1fr 1fr 1fr
+  }
+}
+
+.grid-2 {
+  /* aqui é o grid de 2 colunas - responsivo */
+  grid-template-columns: 1fr
+}
+
+@media(min-width:768px) {
+
+  /* aqui é o media query para 768px - responsivo*/
+  .grid-2 {
+    grid-template-columns: 1fr 1fr
+  }
+}
+
+.card {
+  /* aqui é o card */
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: border-color .2s;
+  position: relative;
+}
+
+.card:hover,
+.card.open {
+  border-color: var(--primary-color);
+}
+
+.card:hover .card-arrow svg,
+.card:focus-visible .card-arrow svg,
+.card.open .card-arrow svg {
+  /* seta gira com o mouse, com o foco do teclado ou quando o card está aberto */
+  transform: rotate(180deg);
+}
+
+.icon-box {
+  /* aqui é o box do ícone */
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: .6rem;
+  background: rgba(30, 136, 255, .12);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  transition: all .2s;
+}
+
+.card.open .icon-box {
+  background: var(--primary-color);
+  color: var(--text-color);
+}
+
+@media (hover: hover) {
+  .card:hover .icon-box {
+    background: var(--primary-color);
+    color: var(--text-color);
+  }
+}
+
+.card.open {
+  border-color: var(--primary-color);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: var(--primary-color);
+  }
+}
+
+.card h3 {
+  /* aqui é o título da card */
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.card p {
+  /* aqui é o texto da card */
+  margin-top: .5rem;
+  color: var(--muted-color);
+  font-size: .9rem;
+}
+
+svg {
+  /* aqui é o ícone */
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card-extra {
+  /* aqui é a parte que abre */
+  display: none;
+}
+
+.card.open .card-extra {
+  /* aqui é a parte que abre quando o card está aberto */
+  display: block;
+}
+
+.card-arrow {
+  /* aqui é o seta do card */
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: var(--text-color);
+  z-index: 2;
+}
+
+.card-arrow svg {
+  /* aqui é o ícone da seta do card */
+  width: 20px;
+  height: 20px;
+  transition: transform 0.4s ease;
+}
+
+.scams {
+  /* aqui começa a seção de golpes */
+  border-top: 1px solid var(--border);
+  background: var(--background-color);
+  padding-top: 6rem;
+}
+
+.scam-card {
+  /* aqui é o card de golpes */
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--background-color);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem 1.25rem;
+
+}
+
+.scam-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.scam-card p {
+  margin-top: 0.5rem;
+  color: var(--muted-color);
+  font-size: 1rem;
+}
+
+.scam-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .75rem;
+  background: var(--primary-color);
+  color: var(--text-color);
+}
+
+.scam-icon svg {
+  width: 1.375rem;
+  height: 1.375rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cta {
+  /* aqui é a seção de call to action */
+  border: 1px solid var(--border);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  background: var(--gradient-hero);
+  filter: brightness(1.1);
+}
+
+@media(min-width:768px) {
+  .cta {
+    padding: 4rem;
+  }
+}
+
+/* aqui é o media query para 768px - responsivo*/
+
+.cta h2 {
+  /* aqui é o título da seção de call to action */
+  max-width: 42rem;
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+@media(min-width:768px) {
+  .cta h2 {
+    font-size: 2.2rem;
+  }
+}
+
+.cta p {
+  /* aqui é o parágrafo da seção de call to action - quadrado final*/
+  margin-top: 1rem;
+  max-width: 40rem;
+  color: var(--muted-color);
+}
+
+.cta p.cta-destaque {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-color);
+  background: rgba(30, 136, 255, 0.12);
+  border-left: 4px solid var(--primary-color);
+  border-radius: 0.5rem;
+}
+
+.cta .destaque {
+  color: var(--primary-color);
+}
+
+.cta .botao {
+  background: var(--primary-dark);
+  color: var(--text-color);
+  margin-top: 2rem;
+}
+
+.cta .botao:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 10px rgba(30, 136, 255, .5);
+}
+
+#fique-atento {
+  /* aqui é a seção de fique atento */
+  padding-top: 10rem;
+}
+
+footer {
+  /* aqui é o rodapé */
+  border-top: 1px solid var(--border);
+}
+
+footer .container {
+  /* aqui é o container dentro do rodapé */
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  color: var(--muted-color);
+  font-size: .6rem;
+}
+footer p {
+  margin-top: 0.1rem;
+}
+.logo-badge svg {
+  color: var(--muted-color);
+}
+
+:focus-visible {
+  /* aqui é o foco do teclado - ficou mais evidente */
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Acessibilidade: link para pular o menu (só aparece com o foco) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--primary-dark);
+  color: var(--text-color);
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  background-color: var(--primary-dark);
+}
+
+/* Botão de pausar a animação do hero */
+.pausar-animacao {
+  position: absolute;
+  right: 1.0rem;
+  bottom: 1.0rem;
+  z-index: 3;
+  padding: 0.4rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  background: rgba(20, 20, 28, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pausar-animacao:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* Botão do menu (escondido no computador) */
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: var(--text-color);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+/* Celular: menu vira lista vertical que abre e fecha */
+@media (max-width: 767px) {
+  .header .container {
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .header nav {
+    display: none;
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .header nav.aberto {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 0.85rem 0;
+    font-size: 1rem;
+  }
+}
+
+/* Botão do título dos cards de dicas */
+.card-toggle {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Estica a área clicável do botão para o card inteiro */
+.card-toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+}
+
+/* O contorno de foco vai para o card, e não só para o título */
+.card-toggle:focus-visible {
+  outline: none;
+}
+
+.card:has(.card-toggle:focus-visible) {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 3px;
+  border-radius: 1rem;
+}
+
+/* A seta não intercepta o clique */
+.card-arrow {
+  pointer-events: none;
+}
