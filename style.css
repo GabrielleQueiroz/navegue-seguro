@@ -214,7 +214,7 @@ body {
   }
 
   .hero-canvas {
-    opacity: 0.4;
+    opacity: 0.5;
     object-position: center center;
   }
 }
