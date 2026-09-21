@@ -108,7 +108,7 @@ if (heroCanvas) {
   requestAnimationFrame(renderLoop);
 
   // Pausa a animação quando o usuário rolar a página para fora da seção Hero
-  const heroSection = document.getElementById("hero");
+  const heroSection = document.getElementById("inicio");
   if (heroSection && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
       (entries) => {
